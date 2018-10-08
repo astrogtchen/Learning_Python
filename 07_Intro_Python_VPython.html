@@ -13084,7 +13084,10 @@ T = text(text='My text is\ngreen',
 質量m之物體由高度H，初速為零自由落下，重力加速度為g，
 則：</p>
 <p>$$ v(t)=\frac{mg}{b}\left(1-e^{-\frac{b}{m}t} \right)  $$</p>
-<p>$$ y(t)=\frac{mg}{b}t + \frac{m^2 g}{b^2}e^{-bt} =\frac{mg}{b} \left(t+\frac{m}{b}e^{-\frac{b}{m}t} \right)$$</p>
+<p>$$a \left( t \right) = ge^{-\frac{b}{m}t} $$</p>
+<p>$$
+y\left( t \right) = \frac{mg}{b}\left( t+\frac{m}{b}e^{-\frac{b}{m}t} \right)- \frac{m^2 g}{b^2} 
+$$</p>
 <p>終端速度$v_{t}=\frac{mg}{b}$</p>
 
 </div>
@@ -13100,71 +13103,102 @@ T = text(text='My text is\ngreen',
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">cont</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">設定常數與球的初始狀態</span>
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="c1"># 重力加速度</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">cont</span><span class="o">.</span><span class="n">g</span>
-<span class="c1"># 球的質量</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="c1"># 初始高度量值</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mf">10.0</span>
-<span class="c1"># 初始速度量值</span>
-<span class="n">v</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1">#球體的質量</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1">#球的半徑</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">red</span>  <span class="c1">#紅色指定為cr</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">blue</span>
+<span class="n">cg</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">green</span>
 
-<span class="c1"># 阻力係數</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>  <span class="c1">#重力加速度量值</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1">#初始高度</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># 阻力係數</span>
 
-<span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
-
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">繪圖、產生物體</span>
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="n">scene</span> <span class="o">=</span> <span class="n">canvas</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="c1"># 水平面，用box畫</span>
-<span class="c1"># floor = box(pos=vec(0, 0, 0), length=50, height = 0.05, width = 50, color = color.black)</span>
-
-<span class="c1"># 畫紅色球，半徑 1</span>
-<span class="n">ball</span><span class="o">=</span><span class="n">sphere</span><span class="p">(</span><span class="n">radius</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">)</span>
-
+<span class="sd">繪圖與產生物體</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">畫x-t、v-t圖</span>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="n">f1</span><span class="o">=</span><span class="n">graph</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;x-t&#39;</span><span class="p">,</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">ytitle</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">xt</span><span class="o">=</span><span class="n">gcurve</span><span class="p">(</span><span class="n">graph</span> <span class="o">=</span> <span class="n">f1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">orange</span><span class="p">)</span>
+<span class="sd">3D圖的版面</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">scene</span> <span class="o">=</span> <span class="n">canvas</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Free-Fall with air friction&#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
+           <span class="n">background</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">畫2D曲線圖的版面</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;y-t&#39;</span><span class="p">,</span> <span class="n">xtitle</span><span class="o">=</span><span class="s1">&#39;t(s)&#39;</span><span class="p">,</span> <span class="n">ytitle</span><span class="o">=</span><span class="s1">&#39;y(m)&#39;</span><span class="p">)</span>
+<span class="n">xt</span> <span class="o">=</span> <span class="n">gcurve</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">f1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;y-t&#39;</span><span class="p">)</span>
+<span class="c1">#xt_theory = gdots(graph=f1, color=cb, label=&#39;theory&#39;)</span>
 
-<span class="n">f2</span><span class="o">=</span><span class="n">graph</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;v-t&#39;</span><span class="p">,</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">ytitle</span> <span class="o">=</span> <span class="s1">&#39;v&#39;</span><span class="p">)</span>
-<span class="n">vt</span><span class="o">=</span><span class="n">gcurve</span><span class="p">(</span><span class="n">graph</span> <span class="o">=</span> <span class="n">f2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;v-t&#39;</span><span class="p">,</span> <span class="n">xtitle</span><span class="o">=</span><span class="s1">&#39;t(s)&#39;</span><span class="p">,</span> <span class="n">ytitle</span><span class="o">=</span><span class="s1">&#39;v(m/s)&#39;</span><span class="p">)</span>
+<span class="n">vt</span> <span class="o">=</span> <span class="n">gcurve</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">f2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cb</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;v-t&#39;</span><span class="p">)</span>
+<span class="c1">#vt_theory = gdots(graph=f2, color=cr, size=1, label=&#39;theory&#39;)</span>
 
+<span class="n">f3</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;a-t&#39;</span><span class="p">,</span> <span class="n">xtitle</span><span class="o">=</span><span class="s1">&#39;t(s)&#39;</span><span class="p">,</span> <span class="n">ytitle</span><span class="o">=</span><span class="s1">&#39;a(m/s&lt;sup&gt;2&lt;/sup&gt;)&#39;</span><span class="p">)</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">gcurve</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">f3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a-t&#39;</span><span class="p">)</span>
+<span class="c1">#at_theory = gdots(graph=f3, color=cr, size=1, label=&#39;theory&#39;)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">產生物體</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">畫出速度箭頭，並用文字標示</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">arr_v</span> <span class="o">=</span> <span class="n">arrow</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cr</span><span class="p">,</span> <span class="n">shaftwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">headwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">vlabel</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">球體與地面</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">ground</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vector</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+
+<span class="n">ball</span> <span class="o">=</span> <span class="n">sphere</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">R</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cr</span><span class="p">)</span>
+<span class="n">ball</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c1">#初速</span>
+<span class="c1">#ball.a = vector(0, -g, 0)  </span>
 
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">用while，rate讓物理運動</span>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">10.0</span><span class="p">:</span>
-    <span class="n">rate</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">R</span><span class="p">:</span>
+    <span class="n">rate</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="c1">#箭頭的位置與長度</span>
+    <span class="n">arr_v</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">arr_v</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="n">v</span>
+    
+    <span class="c1">#文字標示的位置</span>
+    <span class="n">vlabel</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">vector</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1">#阻力 = -b * v</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="n">v</span>
+    
+    <span class="c1">#加速度 </span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">/</span><span class="n">m</span>
 
-    <span class="c1"># 阻力與速率成正比</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">v</span>
-    <span class="c1"># 合力（定向上為正）</span>
-    <span class="n">F</span> <span class="o">=</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-</span> <span class="n">f</span>
-    <span class="c1"># 速度</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="p">(</span><span class="n">F</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
-    <span class="c1"># 位置</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="c1">#末速 = 初速 + 加速度 * 時間間隔</span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">ball</span><span class="o">.</span><span class="n">v</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="n">a</span> <span class="o">*</span> <span class="n">dt</span>
+    
+    <span class="c1"># 末位置 = 初位置 + 速度 * 時間間隔</span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="n">v</span> <span class="o">*</span> <span class="n">dt</span>
+    
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    畫出2D曲線圖</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">xt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">vt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ball</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">at</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ball</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
 
-    <span class="c1"># 將算出來的高度位置座標，輸入球的座標位置</span>
-    <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    畫出理論值</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1">#xt_theory.plot(pos=(t, h-((m*g/b)*(t+(m/b)*exp(-b*t/m))-(m*m*g/b**2))))</span>
+    <span class="c1">#vt_theory.plot(pos=(t, -(m*g/b)*(1-exp(-b*t/m))))</span>
+    <span class="c1">#at_theory.plot(pos=(t, -g*exp(-b*t/m)))</span>
 
     <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    畫出x-t、v-t圖</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">xt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-    <span class="n">vt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -14060,10 +14094,10 @@ with median kinetic energy</p>
 
 
 
-<div id="fc16def9-7fe4-4564-a862-414ca8c2b20e"></div>
+<div id="e3d5e995-1a90-4ec8-87be-957014e1b8c4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#fc16def9-7fe4-4564-a862-414ca8c2b20e');
+var element = $('#e3d5e995-1a90-4ec8-87be-957014e1b8c4');
 require.undef("nbextensions/vpython_libraries/glow.min");
 </script>
 </div>
@@ -14078,10 +14112,10 @@ require.undef("nbextensions/vpython_libraries/glow.min");
 
 
 
-<div id="0730ce38-dcb7-44ef-84aa-241e7d3a7cb7"></div>
+<div id="f66b117e-ff12-49e2-8866-157f1954582d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0730ce38-dcb7-44ef-84aa-241e7d3a7cb7');
+var element = $('#f66b117e-ff12-49e2-8866-157f1954582d');
 require.undef("nbextensions/vpython_libraries/glowcomm");
 </script>
 </div>
@@ -14096,10 +14130,10 @@ require.undef("nbextensions/vpython_libraries/glowcomm");
 
 
 
-<div id="732b8a19-3382-4479-b4c0-2615611f7aca"></div>
+<div id="d849607b-1cae-40ff-a80a-f48c567d8e99"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#732b8a19-3382-4479-b4c0-2615611f7aca');
+var element = $('#d849607b-1cae-40ff-a80a-f48c567d8e99');
 require.undef("nbextensions/vpython_libraries/jquery-ui.custom.min");
 </script>
 </div>
@@ -14114,10 +14148,10 @@ require.undef("nbextensions/vpython_libraries/jquery-ui.custom.min");
 
 
 
-<div id="57a1915d-4701-407a-becf-3d83bfc84002"></div>
+<div id="c421bf52-2057-4744-b5e2-f31ed7315b72"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#57a1915d-4701-407a-becf-3d83bfc84002');
+var element = $('#c421bf52-2057-4744-b5e2-f31ed7315b72');
 require(["nbextensions/vpython_libraries/glow.min"], function(){console.log("GLOW LOADED");})
 </script>
 </div>
@@ -14132,10 +14166,10 @@ require(["nbextensions/vpython_libraries/glow.min"], function(){console.log("GLO
 
 
 
-<div id="7809caba-cbb2-40bb-81b3-0bc171e2a8f4"></div>
+<div id="2d4d01e5-eb40-4d85-8b10-e13b9f950829"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#7809caba-cbb2-40bb-81b3-0bc171e2a8f4');
+var element = $('#2d4d01e5-eb40-4d85-8b10-e13b9f950829');
 require(["nbextensions/vpython_libraries/glowcomm"], function(){console.log("GLOWCOMM LOADED");})
 </script>
 </div>
@@ -14150,10 +14184,10 @@ require(["nbextensions/vpython_libraries/glowcomm"], function(){console.log("GLO
 
 
 
-<div id="5de2ec9c-68d8-4eb2-ba4e-2c4e0a3ead6d"></div>
+<div id="83f37d09-79fc-4563-8ef4-2c80f768891d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#5de2ec9c-68d8-4eb2-ba4e-2c4e0a3ead6d');
+var element = $('#83f37d09-79fc-4563-8ef4-2c80f768891d');
 require(["nbextensions/vpython_libraries/jquery-ui.custom.min"], function(){console.log("JQUERY LOADED");})
 </script>
 </div>
@@ -14180,10 +14214,10 @@ require(["nbextensions/vpython_libraries/jquery-ui.custom.min"], function(){cons
 
 
 
-<div id="7356a347-d0c2-407e-bd03-8be4d0aac2b1"></div>
+<div id="c1c56e18-9115-493a-95cd-5b8d6e94849c"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#7356a347-d0c2-407e-bd03-8be4d0aac2b1');
+var element = $('#c1c56e18-9115-493a-95cd-5b8d6e94849c');
 window.__context = { glowscript_container: $("#glowscript").removeAttr("id")}
 </script>
 </div>
@@ -14210,10 +14244,10 @@ window.__context = { glowscript_container: $("#glowscript").removeAttr("id")}
 
 
 
-<div id="14ce4041-3451-4619-a91b-1053c40c3f9b"></div>
+<div id="eaf37636-8ae7-441e-8685-749c732a3d61"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#14ce4041-3451-4619-a91b-1053c40c3f9b');
+var element = $('#eaf37636-8ae7-441e-8685-749c732a3d61');
 window.__context = { glowscript_container: $("#glowscript").removeAttr("id")}
 </script>
 </div>
