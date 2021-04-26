@@ -13106,6 +13106,7 @@ div#notebook {
 <li><a href="http://www.scipy-lectures.org/index.html">Scipy Lecture Notes</a></li>
 <li><a href="https://legacy.gitbook.com/book/wizardforcel/ts-numpy-tut/details">TutorialsPoint NumPy 教程</a></li>
 <li><a href="http://scipy-cookbook.readthedocs.io/index.html">SciPy Cookbook</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10233646">NumPy基礎介紹</a></li>
 </ul>
 
 </div>
@@ -13160,7 +13161,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># encoding : UTF-8</span>
@@ -13242,7 +13243,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
@@ -13267,7 +13268,7 @@ div#notebook {
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
 <span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-8781cfc40729&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-10-8781cfc40729&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>A <span class="ansi-yellow-intense-fg ansi-bold">=</span> list<span class="ansi-yellow-intense-fg ansi-bold">(</span>range<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">10</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0.1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-fg">      2</span> print<span class="ansi-yellow-intense-fg ansi-bold">(</span>A<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-fg">      3</span> <span class="ansi-red-intense-fg ansi-bold"># range 不支援浮點數</span>
@@ -13280,9 +13281,55 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="numpy.arange">numpy.arange<a class="anchor-link" href="#numpy.arange">&#182;</a></h3><p>此陣列以等差數列的形式產生，指定間隔</p>
+<p><code>numpy.arange(start, stop, step, dtype)</code></p>
+<ul>
+<li>start : 從某數開始，預設為0</li>
+<li>stop : 到某數停止(不包含)</li>
+<li>step : 間格多少</li>
+<li>dtype : bool(布林值), int(整數), float(浮點數), complex(複數)</li>
+</ul>
+<h3 id="numpy.linspace(&#31561;&#24046;&#25976;&#21015;)">numpy.linspace(&#31561;&#24046;&#25976;&#21015;)<a class="anchor-link" href="#numpy.linspace(&#31561;&#24046;&#25976;&#21015;)">&#182;</a></h3><p>此陣列以等差數列的形式產生，指定個數</p>
+<p><code>np.linspace(start, stop, 
+            num=50, 
+            endpoint=True, 
+            retstep=False, 
+            dtype=None)</code></p>
+<ul>
+<li>start : 從某數開始</li>
+<li>stop : 到某數停止</li>
+<li>num : start到stop之間有多少數字</li>
+<li>endpoint : True(包含stop); False(不包含stop)，預設為True</li>
+<li>restep : 若是True，則會在array的後面，加上間隔多少，預設為False</li>
+<li>dtype : bool(布林值), int(整數), float(浮點數), complex(複數)</li>
+</ul>
+<h3 id="numpy.logspace(&#31561;&#27604;&#25976;&#21015;)">numpy.logspace(&#31561;&#27604;&#25976;&#21015;)<a class="anchor-link" href="#numpy.logspace(&#31561;&#27604;&#25976;&#21015;)">&#182;</a></h3><p>此陣列以等比數列的形式產生</p>
+<p><code>np.logspace(start, stop, num=50, endpoint=True, base=10.0, dtype=None)</code></p>
+<ul>
+<li>start : 從某數開始</li>
+<li>stop : 到某數停止</li>
+<li>num : start到stop之間有多少數字</li>
+<li>endpoint : True(包含stop); False(不包含stop)，預設為True</li>
+<li>base : 以多少為底數，預設為10.0</li>
+<li>dtype : bool(布林值), int(整數), float(浮點數), complex(複數)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#23526;&#38555;&#28436;&#32244;">&#23526;&#38555;&#28436;&#32244;<a class="anchor-link" href="#&#23526;&#38555;&#28436;&#32244;">&#182;</a></h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13372,7 +13419,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -13393,7 +13440,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Wall time: 49.9 ms
+<pre>Wall time: 56.8 ms
 </pre>
 </div>
 </div>
@@ -13404,7 +13451,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it 
@@ -13425,7 +13472,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>37.9 ms ± 2.49 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>65.9 ms ± 4.1 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
@@ -13436,7 +13483,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
@@ -13459,7 +13506,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3.79 ms ± 206 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>6.4 ms ± 612 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -13470,7 +13517,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
@@ -13494,7 +13541,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>16.4 µs ± 1.4 µs per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<pre>32.3 µs ± 4.93 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre>
 </div>
 </div>
@@ -13512,7 +13559,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13551,7 +13598,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="c1">#維度</span>
@@ -13567,7 +13614,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -13584,7 +13631,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">shape</span> 
@@ -13600,7 +13647,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13617,7 +13664,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1">#長度</span>
@@ -13633,7 +13680,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -13650,7 +13697,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">+</span><span class="mi">5</span>  
@@ -13666,7 +13713,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -13683,7 +13730,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">*</span><span class="mi">3</span>
@@ -13699,7 +13746,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -13716,7 +13763,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2</span><span class="o">**</span><span class="n">a</span>
@@ -13732,7 +13779,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -13749,7 +13796,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 以下運算非矩陣運算</span>
@@ -13797,7 +13844,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">weight</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
@@ -13814,7 +13861,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -13831,7 +13878,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1">#內積</span>
@@ -13847,7 +13894,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -13864,7 +13911,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 陣列內的運算</span>
@@ -13881,7 +13928,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>     <span class="c1">#平均值</span>
@@ -13926,9 +13973,16 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#23559;&#38499;&#21015;&#20540;&#36664;&#20837;&#20989;&#25976;&#65292;&#36664;&#20986;&#38499;&#21015;&#20989;&#25976;&#20540;">&#23559;&#38499;&#21015;&#20540;&#36664;&#20837;&#20989;&#25976;&#65292;&#36664;&#20986;&#38499;&#21015;&#20989;&#25976;&#20540;<a class="anchor-link" href="#&#23559;&#38499;&#21015;&#20540;&#36664;&#20837;&#20989;&#25976;&#65292;&#36664;&#20986;&#38499;&#21015;&#20989;&#25976;&#20540;">&#182;</a></h2>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 將陣列值輸入函數，輸出陣列函數值</span>
@@ -13992,7 +14046,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14027,7 +14081,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># index2~9 每隔 3 個取值</span>
@@ -14043,7 +14097,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -14060,7 +14114,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="p">[</span><span class="mi">3</span><span class="p">:]</span>    <span class="c1">#取出index＝3之後</span>
@@ -14076,7 +14130,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -14093,7 +14147,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="p">[:</span><span class="mi">4</span><span class="p">]</span>    <span class="c1">#取出index＝4之前</span>
@@ -14109,7 +14163,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -14126,7 +14180,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="p">[::</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># 每隔2個index取值</span>
@@ -14142,7 +14196,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -14159,7 +14213,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="mi">3</span> <span class="c1"># 每間隔2個index 都加 3</span>
@@ -14191,7 +14245,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 輸入位置的 array取值</span>
@@ -14211,7 +14265,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -14228,7 +14282,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>  <span class="c1"># 可重複取值</span>
@@ -14244,7 +14298,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[36]:</div>
 
 
 
@@ -14261,7 +14315,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="p">[[</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span><span class="o">=-</span><span class="mi">10</span> <span class="c1"># 指定index 9,7 的值為-10</span>
@@ -14293,7 +14347,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span><span class="o">+=</span><span class="mi">1</span> <span class="c1">#index 2,3,2,4,2 各加 1</span>
@@ -14333,7 +14387,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14368,7 +14422,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">ndim</span> 
@@ -14384,7 +14438,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[40]:</div>
 
 
 
@@ -14401,7 +14455,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (列，行)</span>
@@ -14417,7 +14471,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
 
@@ -14434,7 +14488,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span> <span class="c1"># returns the size of the first dimension</span>
@@ -14450,7 +14504,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[42]:</div>
 
 
 
@@ -14467,7 +14521,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#改變行列數</span>
@@ -14483,7 +14537,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -14502,7 +14556,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>   <span class="c1">#拉平</span>
@@ -14518,7 +14572,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[44]:</div>
 
 
 
@@ -14535,7 +14589,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># 轉置</span>
@@ -14551,7 +14605,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[45]:</div>
 
 
 
@@ -14570,7 +14624,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a2</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>   <span class="c1"># Higher dimensions: last dimensions ravel out “ﬁrst”.</span>
@@ -14586,7 +14640,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[46]:</div>
 
 
 
@@ -14603,7 +14657,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 可用 numpy 的功能先創造一串數字，再變成陣列 </span>
@@ -14638,7 +14692,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a3</span><span class="o">.</span><span class="n">shape</span>
@@ -14654,7 +14708,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[40]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -14671,7 +14725,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a3</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -14687,7 +14741,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[41]:</div>
+    <div class="prompt output_prompt">Out[49]:</div>
 
 
 
@@ -14705,7 +14759,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14791,7 +14845,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14826,7 +14880,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C0</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#取出index(行)=0</span>
@@ -14862,13 +14916,15 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">As</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>      <span class="c1"># 全部的元素加起來</span>
 
-<span class="n">A0</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 將 axis=0（行）加總</span>
-<span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 將 axis=1 (列) 加總</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 將 axis=0（行）加總，往下加</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 將 axis=1 (列) 加總，往右加</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 以列為主，往下累加</span>
+<span class="n">A3</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 以行為主，往右累加</span>
 
 <span class="n">a0</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1">#將index(行)=0的加總</span>
 <span class="n">a1</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1">#將index(行)=3的加總</span>
@@ -14908,7 +14964,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14921,6 +14977,23 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># Returns the indices of the minimum values along an axis.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># Returns the indices of the max values along an axis.</span>
+
+
+
+<span class="n">B1</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="c1"># 最大值</span>
+<span class="n">B2</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="c1"># 最小值</span>
+
+<span class="n">B3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># 中位數</span>
+<span class="n">B4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># 平均值</span>
+<span class="n">B5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># 標準差</span>
+<span class="n">B6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># 變異數</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Max. =&#39;</span><span class="p">,</span> <span class="n">B1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Min. =&#39;</span><span class="p">,</span> <span class="n">B2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;median=&#39;</span><span class="p">,</span> <span class="n">B3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean=&#39;</span><span class="p">,</span> <span class="n">B4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;std=&#39;</span><span class="p">,</span> <span class="n">B5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;var=&#39;</span><span class="p">,</span> <span class="n">B6</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14942,6 +15015,12 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 [2. 5.]
 [0 0 1]
 [1 1 0]
+Max. = 6
+Min. = 1
+median= 2.5
+mean= 3.0
+std= 1.9148542155126762
+var= 3.6666666666666665
 </pre>
 </div>
 </div>
@@ -14952,7 +15031,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">B2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -14998,7 +15077,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15031,7 +15110,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">shape</span>
@@ -15047,7 +15126,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[49]:</div>
+    <div class="prompt output_prompt">Out[57]:</div>
 
 
 
@@ -15064,7 +15143,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C2</span> <span class="o">=</span> <span class="n">C</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="c1">#增加一個axis，變為2D array</span>
@@ -15077,7 +15156,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C2</span><span class="o">.</span><span class="n">shape</span>
@@ -15093,7 +15172,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[51]:</div>
+    <div class="prompt output_prompt">Out[59]:</div>
 
 
 
@@ -15110,7 +15189,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C3</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]</span>
@@ -15151,7 +15230,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 給定index陣列取值</span>
@@ -15190,7 +15269,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -15230,7 +15309,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -15288,7 +15367,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># array  過濾器</span>
@@ -15330,7 +15409,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sort</span>
@@ -15369,7 +15448,7 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#利用fancy indexing 排序</span>
@@ -15410,6 +15489,15 @@ C:\Users\user\Anaconda3\lib\site-packages\ipykernel_launcher.py:9: RuntimeWarnin
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#24291;&#25773;">&#24291;&#25773;<a class="anchor-link" href="#&#24291;&#25773;">&#182;</a></h2><p>如果兩個陣列的維度不一樣，則會在維度較小的陣列最前面補上一個維度，使得兩個矩陣相對應的維度一樣，進行運算。</p>
+<p>如果拓展玩完還是不同或是沒有機會拓則不能做廣播</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Broadcasting">Broadcasting<a class="anchor-link" href="#Broadcasting">&#182;</a></h1><p>generate arrays with the same sizes</p>
 <ul>
 <li>Basic operations on numpy arrays (addition, etc.) are elementwise</li>
@@ -15426,7 +15514,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15462,7 +15550,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
@@ -15500,7 +15588,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
@@ -15536,7 +15624,64 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">First:</span>
+<span class="sd">    shape of a: (4, 3)</span>
+<span class="sd">    shape of b: (3)</span>
+<span class="sd">    </span>
+<span class="sd">Start broadcast:</span>
+<span class="sd">    b (3) -&gt; (1, 3) # Add 1 at the first dimension</span>
+<span class="sd">    b (1, 3) -&gt; (4, 3) # Broadcast 1 to the corresponding number</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;New result is {a+b}</span><span class="se">\n</span><span class="s2">Shape of the new result is {(a+b).shape}&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1 2 3]
+[0 1 2 3 4 5 6 7 8 9]
+New result is [[ 1  2  3]
+ [11 12 13]
+ [21 22 23]
+ [31 32 33]]
+Shape of the new result is (4, 3)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 可以合併在一行內</span>
@@ -15549,7 +15694,7 @@ the same size: this conversion is called broadcasting.</li>
 <span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
 
-<span class="n">CD</span> <span class="o">=</span> <span class="n">C</span> <span class="o">+</span> <span class="n">D</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">CD</span> <span class="o">=</span> <span class="n">C</span> <span class="o">+</span> <span class="n">D</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1">#要將D的axis更換</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">CD</span><span class="p">)</span>
 </pre></div>
 
@@ -15598,7 +15743,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15660,7 +15805,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15717,7 +15862,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15764,7 +15909,7 @@ the same size: this conversion is called broadcasting.</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[65]:</div>
+    <div class="prompt output_prompt">Out[74]:</div>
 
 
 
@@ -15800,7 +15945,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
@@ -15834,20 +15979,20 @@ the same size: this conversion is called broadcasting.</li>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[0.42650304 0.59875585 0.13088785 0.70503317 0.04782052]
-[[0.39032389 0.48126486]
- [0.75016791 0.59406353]
- [0.91285425 0.64226443]]
-[0 0 1 0 1 2 2 1 0 2 0 1 2 2 0 2 0 2 2 2 2 1 0 0 0 2 2 2 2 2 1 0 2 0 1 2 1
- 2 1 2 2 0 1 2 1 1 0 2 0 1]
-[[0 2 1 2]
- [2 3 2 4]]
-[-0.4990894  -0.18014838  0.66514833 -0.22883387 -0.04620667 -0.75055012
- -0.16392584 -2.56877826  0.43958687  1.18877922]
-[-1.25300241  1.26581465  0.40239014 -0.030429    0.44136698 -0.45124617
- -1.73194056  0.31658986  0.05181305  0.38303404]
-[0.11896762 0.59755543 0.00687148 0.26867754 0.79665645 0.38094568
- 0.55099956 0.78439586 0.95465106 0.66307463]
+<pre>[0.68074408 0.99627002 0.66568029 0.48588499 0.28001364]
+[[0.96966966 0.60855577]
+ [0.54364663 0.93907364]
+ [0.4740562  0.98600733]]
+[2 1 2 0 0 0 1 1 1 2 0 2 1 0 0 2 2 0 1 1 0 1 2 0 1 1 1 2 2 1 2 2 1 2 2 0 1
+ 1 0 2 0 2 2 0 0 2 1 1 0 2]
+[[1 0 2 0]
+ [2 4 1 3]]
+[ 0.83783198 -1.58494944  1.30305824 -0.01369219 -0.15300716  0.25234828
+ -0.85561215  0.60494199 -0.65903232 -0.56737097]
+[-0.29885082  0.49367384  1.42245046 -0.97367509  0.09657626 -1.100439
+ -0.25014475 -0.15692264  0.11152792 -0.18224564]
+[0.14042446 0.61065314 0.35223589 0.17289808 0.54575623 0.65063958
+ 0.48449031 0.48736946 0.51064932 0.14837876]
 </pre>
 </div>
 </div>
@@ -15867,7 +16012,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15909,7 +16054,7 @@ the same size: this conversion is called broadcasting.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 一般常用的數據檔會有多行，則讀檔時需要用多個變數承接</span>
