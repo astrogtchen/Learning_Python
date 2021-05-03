@@ -10,3 +10,4 @@
 - 6：文字編輯器與執行
 - 7：vpython套件
 - 8：jupyter-notebook
+- 9：pandas
