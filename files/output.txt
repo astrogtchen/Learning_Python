@@ -1,0 +1,7 @@
+apple
+banana
+lemon
+tomato
+apple
+banana
+tomato
