@@ -4,7 +4,7 @@
 
 - 1、安裝與執行、變數與字串
 - 2、list(串列)、tuple(元組)、流程控制與自訂函數(def)、、dict(字典)、set(集合)
-- 3、File Handling
+- 3、Output Format and File Handling
 - 4、Numpy
 - 5、Matplotlib
 - 6、Scipy
